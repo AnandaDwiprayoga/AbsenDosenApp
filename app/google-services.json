@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "722095896747",
+    "firebase_url": "https://absenguruprivate.firebaseio.com",
+    "project_id": "absenguruprivate",
+    "storage_bucket": "absenguruprivate.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:722095896747:android:12af5e769af1db40951fee",
+        "android_client_info": {
+          "package_name": "org.z1god.absenguruprivate"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "722095896747-d8orrhoitjtk08pkupg80lg6lv06umsh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "org.z1god.absenguruprivate",
+            "certificate_hash": "2868492ccc80b88f171fd99ab76128cb63f1b98f"
+          }
+        },
+        {
+          "client_id": "722095896747-frdg92kkj2ln8unprg2ph8fp1fkk8jpa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBAWTmLOUoo4DK6LeBkJPtySncFRC6BebU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "722095896747-frdg92kkj2ln8unprg2ph8fp1fkk8jpa.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
