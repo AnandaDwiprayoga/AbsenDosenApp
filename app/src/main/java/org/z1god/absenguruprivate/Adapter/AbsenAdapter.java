@@ -3,16 +3,12 @@ package org.z1god.absenguruprivate.Adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.squareup.picasso.Picasso;
-
 import org.z1god.absenguruprivate.Model.AbsenModel;
-import org.z1god.absenguruprivate.Model.DosenModel;
 import org.z1god.absenguruprivate.R;
 import org.z1god.absenguruprivate.Utilitis.MyDate;
 
@@ -21,9 +17,11 @@ import java.util.List;
 public class AbsenAdapter extends RecyclerView.Adapter<AbsenAdapter.MyViewHolder> {
 
     private List<AbsenModel> listAbsen;
+    private OnItemClickListener onItemClickListener;
 
-    public AbsenAdapter(List<AbsenModel> listAbsen) {
+    public AbsenAdapter(List<AbsenModel> listAbsen, OnItemClickListener mOnItemClick) {
         this.listAbsen = listAbsen;
+        onItemClickListener = mOnItemClick;
     }
 
     @NonNull
@@ -48,6 +46,14 @@ public class AbsenAdapter extends RecyclerView.Adapter<AbsenAdapter.MyViewHolder
             holder.tvTanggal.setText(MyDate.convertDateToName(dsn.getTanggal()));
             holder.tvLogin.setText(dsn.getLogin());
             holder.tvLogout.setText(MyDate.convertTime(dsn.getLogout()));
+
+            holder.actionMaps.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int realPosition = holder.getAdapterPosition() - 1;
+                    onItemClickListener.onClick(listAbsen.get(realPosition));
+                }
+            });
         }
     }
 
@@ -63,6 +69,7 @@ public class AbsenAdapter extends RecyclerView.Adapter<AbsenAdapter.MyViewHolder
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView tvTanggal, tvLogin,tvLogout;
+        ImageButton actionMaps;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -70,6 +77,11 @@ public class AbsenAdapter extends RecyclerView.Adapter<AbsenAdapter.MyViewHolder
             tvTanggal = itemView.findViewById(R.id.tv_tanggal);
             tvLogin = itemView.findViewById(R.id.tv_waktuLogin);
             tvLogout = itemView.findViewById(R.id.tv_waktuLogout);
+            actionMaps = itemView.findViewById(R.id.tv_listAction);
         }
+    }
+
+    public interface OnItemClickListener{
+        void onClick(AbsenModel absen);
     }
 }

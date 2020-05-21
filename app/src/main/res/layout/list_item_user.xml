@@ -4,6 +4,13 @@
     android:layout_height="50sp"
     android:orientation="horizontal">
 
+    <ImageButton
+        android:id="@+id/tv_listAction"
+        android:layout_width="70dp"
+        android:layout_height="match_parent"
+        android:background="#E91E63"
+        android:src="@drawable/ic_location_on_white_32dp"/>
+
     <TextView
         android:id="@+id/tv_tanggal"
         android:layout_width="180dp"

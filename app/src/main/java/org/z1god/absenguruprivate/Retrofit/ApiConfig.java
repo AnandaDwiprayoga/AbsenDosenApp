@@ -10,7 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ApiConfig {
     public static JsonPlaceHolder getApiService(){
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://anandadwiprayoga-api.000webhostapp.com/")
+                .baseUrl("http://192.168.1.2/api-miniproject/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         return retrofit.create(JsonPlaceHolder.class);

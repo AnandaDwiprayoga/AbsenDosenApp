@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -25,7 +26,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class DetailRiwayatDosen extends AppCompatActivity {
+import static org.z1god.absenguruprivate.MapsActivity.KEY_LATITUDE;
+import static org.z1god.absenguruprivate.MapsActivity.KEY_LONGITUDE;
+
+public class DetailRiwayatDosen extends AppCompatActivity implements AbsenAdapter.OnItemClickListener{
 
     public static final String KEY_RIWAYAT_NAME_DOSEN = "KEY_RIWAYAT_NAME_DOSEN";
     public static final String KEY_RIWAYAT_ID_DOSEN = "KEY_RIWAYAT_ID_DOSEN";
@@ -47,7 +51,7 @@ public class DetailRiwayatDosen extends AppCompatActivity {
         loading.setVisibility(View.VISIBLE);
 
         listAbsen = new ArrayList<>();
-        absenAdapter = new AbsenAdapter(listAbsen);
+        absenAdapter = new AbsenAdapter(listAbsen,this);
         tvName = findViewById(R.id.tv_name_dosen);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -66,7 +70,7 @@ public class DetailRiwayatDosen extends AppCompatActivity {
             public void onResponse(Call<List<AbsenModel>> call, Response<List<AbsenModel>> response) {
                 if (response.isSuccessful()){
                     listAbsen = response.body();
-                    absenAdapter = new AbsenAdapter(listAbsen);
+                    absenAdapter = new AbsenAdapter(listAbsen, DetailRiwayatDosen.this);
                     recyclerView.setAdapter(absenAdapter);
                 }else{
                     Gson gson = new Gson();
@@ -90,5 +94,13 @@ public class DetailRiwayatDosen extends AppCompatActivity {
 
     public void finish(View view) {
         finish();
+    }
+
+    @Override
+    public void onClick(AbsenModel absen) {
+        Intent intent = new Intent(this, MapsActivity.class);
+        intent.putExtra(KEY_LATITUDE, absen.getLatitude());
+        intent.putExtra(KEY_LONGITUDE, absen.getLongitude());
+        startActivity(intent);
     }
 }
